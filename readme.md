@@ -53,10 +53,27 @@ Pour chaque produit je doit rentrer les informations suivantes
 --------------------------------------------------------------------------------------------
 
     [ ] Page d'index :
-        * formulaire de login
+        * Formulaire de login
     [ ] page produit :
-        * formulaire d'ajout de produits
-        * selection + tableau suppression de produit
-        * un tableau pour afficher les produits
-        * un formulaire de modification de produit +un select du produit a modifier
+        * Formulaire d'ajout de produits
+        * Affichage des produits, bouton modifier et bouton supprimer
+        * Click sur le bouton modifier prérempli un formulaire pour le modifier
+
+    [ ] creation de la base de données
+        * id_produit
+        * url_achat
+        * adresse_achat
+        * nom_produit
+        * reference
+        * categorie (pour formulaire/ un select)
+        * date_achat
+        * date_garantie
+        * prix
+        * entretiens
+        * photo_ticket
+        * doc_produit
+
+on travail sur des branch jc zak main
+
+
 ```
