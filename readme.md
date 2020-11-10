@@ -60,4 +60,4 @@ Pour chaque produit je doit rentrer les informations suivantes
             [ ] Affichage de la totalité des produits de la table (foreach)
             [ ] Suppression de produits
             [ ] Modification de produits (la totalité du produit)
-```
+			test
