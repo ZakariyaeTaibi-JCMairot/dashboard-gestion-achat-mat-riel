@@ -50,14 +50,13 @@ Pour chaque produit je doit rentrer les informations suivantes
 
 	A rendre pour 17/11/2020 à 15h00.
 
-    --------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 
     [ ] Page d'index :
         * formulaire de login
     [ ] page produit :
         * formulaire d'ajout de produits
-        * Tableau de gestion de produits
-            [ ] Affichage de la totalité des produits de la table (foreach)
-            [ ] Suppression de produits
-            [ ] Modification de produits (la totalité du produit)
+        * selection + tableau suppression de produit
+        * un tableau pour afficher les produits
+        * un formulaire de modification de produit +un select du produit a modifier
 ```
