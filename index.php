@@ -15,7 +15,11 @@
 </head>
 <body>
     <!-- mettre en place un formulaire pour  le login-->
+<?php
 
+echo"toto";
+
+?>
     <!-- script js -->
     <!-- bootstrap -->
     <script 
