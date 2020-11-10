@@ -77,3 +77,9 @@ on travail sur des branch jc zak main
 
 
 ```
+        * formulaire d'ajout de produits
+        * Tableau de gestion de produits
+            [ ] Affichage de la totalité des produits de la table (foreach)
+            [ ] Suppression de produits
+            [ ] Modification de produits (la totalité du produit)
+			test
