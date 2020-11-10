@@ -19,5 +19,5 @@
 	- Photo du tiket d'achat
 	- Manuel d'utlisation (Pas obligatoire si existe pas) -->
 
-<!-- formulaire pour la gestion des produits lister / suprimer / modifier-->
+<!-- Tableau pour la gestion des produits lister / suprimer / modifier-->
 <!-- formulaire pour ajouter un nous produit -->
