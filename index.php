@@ -10,7 +10,7 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
     crossorigin="anonymous">
     <!-- css projet dashboard -->
-    <link rel="stylesheet" href="/asset/css/global.css">
+    <link rel="stylesheet" href="asset/css/global.css">
     <title>Dashboard | Gestion achat matériel </title>
 </head>
 <body>
