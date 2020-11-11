@@ -1,18 +1,16 @@
 /* fiche produit */
 .ficheProduit {
-  background: blue;
   width: 80%;
   margin: 0 auto;
   border-radius: 15px;
   padding: 20px;
+  border: 1px solid #777;
 }
 .headProduit {
-  background: red;
   display: flex;
   justify-content: space-between;
 }
 .mainProduit {
-  background: green;
   display: flex;
   justify-content: space-between;
   min-height: 150px;
@@ -28,12 +26,43 @@
 .footerProduit {
   display: flex;
   justify-content: space-between;
-  background: hotpink;
 }
 .prixProduit {
   width: 8em;
   margin-right: 10px;
 }
+
+/* formulaire update produit */
+.formUpDate {
+  border: 1px solid #777777;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.formUpDate input,
+textarea,
+select,
+label,
+button {
+  margin: 10px 10px;
+}
+/* formulaire ajout de produit formCreate */
+.formCreate {
+  border: 1px solid #777777;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.formCreate input,
+textarea,
+select,
+label,
+button {
+  margin: 10px 10px;
+}
+
 /* class de test */
 .test {
   border: 1px red solid;
@@ -42,3 +71,4 @@
   min-width: 150px;
   min-height: 100px;
 }
+/*  */
