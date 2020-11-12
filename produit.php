@@ -17,49 +17,49 @@ include_once('index.php');
 <!-- tableau read la base de donné pour afficahge dans un tableau / bouton suppr/ 
 bouton motifier qui renvoie à un formulaire prés rempli 
 avec les données du produit à modifier-->
-
-<div id="cardProduit" class="ficheProduit">
-	<!-- entête de la fiche produit -->
-	<div class="headProduit">
-		<div>
-			<h2>Nom du produit</h2>
+<div class="allProduit">
+	<div id="cardProduit" class="ficheProduit">
+		<!-- entête de la fiche produit -->
+		<div class="headProduit">
+			<div>
+				<h2>Nom du produit</h2>
+			</div>
+			<div>
+				<h3>reférence du produit</h3>
+			</div>
+			<div >
+				<span class="badge badge-secondary">categorie</span>
+			</div>
+				
 		</div>
-		<div>
-			<h3>reférence du produit</h3>
+		<hr>
+		<!-- corps de la fich produit -->
+		<div class="mainProduit">
+			<div>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+				Molestiae, tempora aliquam. Omnis blanditiis ipsa similique
+				illum itaque libero nostrum voluptatem amet ut! Molestias, 
+				repudiandae. Vitae maiores fugit id a dolor!</p> 
+				
+			</div>
+			<div class="div-vide"><img src="" alt=""></div> 
+			<div class="adminProduit ">
+				<button class="btn btn-dark btn-block">Modifier</button>
+				<button class="btn btn-dark btn-block">Supprimer</button>
+				<button class="btn btn-dark btn-block">Documentation</button>
+			</div>
 		</div>
-		<div >
-			<span class="badge badge-secondary">categorie</span>
+		<hr>
+		<!-- footer de l fiche produit -->
+		<div class="footerProduit">
+			<div>Adresse achat</div>
+			<div>Date d'achat</div>
+			<div>Date de fin de garantie</div>
+			<div class="prixProduit">Prix</div>
 		</div>
-			
 	</div>
-	<hr>
-	<!-- corps de la fich produit -->
-	<div class="mainProduit">
-		<div>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-			Molestiae, tempora aliquam. Omnis blanditiis ipsa similique
-			illum itaque libero nostrum voluptatem amet ut! Molestias, 
-			repudiandae. Vitae maiores fugit id a dolor!</p> 
-			
-		</div>
-		<div class="div-vide"><img src="" alt=""></div> 
-		<div class="adminProduit ">
-			<button class="btn btn-dark btn-block">Modifier</button>
-			<button class="btn btn-dark btn-block">Supprimer</button>
-			<button class="btn btn-dark btn-block">Documentation</button>
-		</div>
-	</div>
-	<hr>
-	<!-- footer de l fiche produit -->
-	<div class="footerProduit">
-		<div>Adresse achat</div>
-		<div>Date d'achat</div>
-		<div>Date de fin de garantie</div>
-		<div class="prixProduit">Prix</div>
-	</div>
+	
 </div>
-
-
 
 
 
