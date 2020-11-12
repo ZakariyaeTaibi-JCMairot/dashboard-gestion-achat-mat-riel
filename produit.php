@@ -33,7 +33,7 @@ require_once('inc/nav.php');
 						<h2><?=$nom_prod?> <?=$ref_prod?></h2>
 					</div>
 					<div >
-						<span class="badge badge-secondary"><?=$cate_prod?></span>
+						<span class="badge badge-primary"><?=$cate_prod?></span>
 					</div>			
 				</div>
 				<hr>

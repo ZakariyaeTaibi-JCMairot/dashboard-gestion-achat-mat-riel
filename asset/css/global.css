@@ -5,6 +5,14 @@ body {
   background: url(../../img/bg_dashboard.jpg) no-repeat center/cover;
   height: 100%;
 }
+.navbar {
+  justify-content: flex-start;
+  box-shadow: 0 2px 3px #777;
+}
+.navbar a {
+  margin-right: 2rem;
+}
+
 /* page produit titleDashboard */
 .bgDashBoard {
   padding-top: 50px;
@@ -17,7 +25,9 @@ body {
   color: #777777;
 }
 /* page produit fiche produit */
-
+.badge {
+  font-size: 1.2rem;
+}
 .h2Produit {
   color: #eee;
   text-align: center;
@@ -29,7 +39,7 @@ body {
   padding: 2rem 0;
 }
 .ficheProduit {
-  width: 80%;
+  width: 95%;
   margin: 0 auto 2rem;
   border-radius: 15px;
   padding: 20px;
@@ -85,6 +95,10 @@ body {
   }
   .footerProduit {
     display: block;
+  }
+  .navbar {
+    justify-content: center;
+    align-items: center;
   }
 }
 /* page produit formulaire update/modification produit */
