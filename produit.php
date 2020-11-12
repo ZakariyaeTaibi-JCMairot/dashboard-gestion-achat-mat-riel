@@ -1,8 +1,12 @@
 <?php
 require_once('inc/header.php');
 require_once('inc/nav.php');
+require_once('inc/init.php');
 // insertion du code php
 // gérer l'accés à la table des produits
+
+
+
 ?>
 <div class="bgDashBoard">
 	<h1 class="titleDashboard">DASHBOARD BACKOFFICE</h1>
