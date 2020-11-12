@@ -13,13 +13,37 @@
     <link rel="stylesheet" href="/asset/css/global.css">
     <title>Dashboard | Gestion achat matériel </title>
 </head>
-<body>
-    <!-- mettre en place un formulaire pour  le login-->
-<?php
 
-echo"toto";
+<body>
+
+<?php
+$error='';
+
 
 ?>
+
+<h1>Connexion</h1>
+	<!----message d'erreur------>
+	<?= $error ?> 
+	<!-- formulaire pour le login -->
+	<form method="post" action="login.php" class="">
+	
+		<div class="form-group">
+			<label>email : </label>
+			<input type="text" name="email" class="form-control" />
+		</div>
+		
+		<div class="form-group">
+			<label>Mot de passe : </label>
+			<input type="password" name="password" class="form-control" />
+		</div>
+	
+		<div class="form-group">
+			<input type="submit" class="btn btn-success" value="Connexion"/>
+		</div>
+	</form>
+
+
     <!-- script js -->
     <!-- bootstrap -->
     <script 
