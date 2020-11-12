@@ -4,13 +4,12 @@ include_once('index.php');
 // gérer l'accés à la table des produits
 ?>
 <!-- navigation sticky pour rendre plus facile l'accés aux modules dashboard -->
-<nav>
-	<ul>
-		<li><a href="#cardProduit">Tableau des produits</a></li>
-		<li><a href="">Modifier un produit</a></li>
-		<li><a href="">Ajout d'un produit</a></li>
-	</ul>
+<nav class="navbar sticky-top navbar-light bg-light">
+  <a class="navbar-brand" href="#">Fiches des produits</a>
+  <a class="navbar-brand" href="#">Modifier un produit</a>
+  <a class="navbar-brand" href="#">Ajout d'un produit</a>
 </nav>
+
 
 <h1>DASHBOARD BACKOFFICE</h1>
 
@@ -28,10 +27,12 @@ avec les données du produit à modifier-->
 		<div>
 			<h3>reférence du produit</h3>
 		</div>
-		<div>
-			Badge categorie
+		<div >
+			<span class="badge badge-secondary">categorie</span>
 		</div>
+			
 	</div>
+	<hr>
 	<!-- corps de la fich produit -->
 	<div class="mainProduit">
 		<div>
@@ -48,6 +49,7 @@ avec les données du produit à modifier-->
 			<button class="btn btn-dark btn-block">Documentation</button>
 		</div>
 	</div>
+	<hr>
 	<!-- footer de l fiche produit -->
 	<div class="footerProduit">
 		<div>Adresse achat</div>
