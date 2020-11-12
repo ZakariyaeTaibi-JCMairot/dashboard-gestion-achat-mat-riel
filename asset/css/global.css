@@ -2,12 +2,30 @@
 body {
   width: 85%;
   margin: 0 auto;
+  background: url(../../img/bg_dashboard.jpg) no-repeat center/cover;
 }
-
+/* titleDashboard */
+.bgDashBoard {
+  padding-top: 50px;
+  background: #eee;
+}
+.titleDashboard {
+  text-align: center;
+  margin: 5rem 2rem;
+  font-size: 3rem;
+  color: #777777;
+}
 /* fiche produit */
+
+.h2Produit {
+  color: #eee;
+  text-align: center;
+  margin: 2rem;
+}
 .allProduit {
   background: #423c3c;
-  height: 2000px;
+  /* height: 2000px; */
+  padding: 2rem 0;
 }
 
 .ficheProduit {
@@ -44,7 +62,19 @@ body {
   margin-right: 10px;
 }
 
-/* formulaire update produit */
+/* formulaire update/modification produit */
+.upDateProduit {
+  padding: 2rem 0;
+}
+
+.upDateProduit h2 {
+  text-align: center;
+  margin: 2rem;
+}
+.readProduit {
+  width: 77%;
+  margin: 0 auto 2rem;
+}
 .formUpDate {
   border: 1px solid #777777;
   width: 80%;
@@ -60,12 +90,22 @@ button {
   margin: 10px 10px;
 }
 /* formulaire ajout de produit formCreate */
+.createProduit {
+  background: #423c3c;
+  padding: 2rem 0;
+}
+.createProduit h2 {
+  text-align: center;
+  margin: 2rem;
+  color: #eee;
+}
 .formCreate {
   border: 1px solid #777777;
   width: 80%;
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
+  background: #eee;
 }
 .formCreate input,
 textarea,
