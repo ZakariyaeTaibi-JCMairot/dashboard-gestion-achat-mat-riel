@@ -2,7 +2,9 @@
 body {
   width: 85%;
   margin: 0 auto;
-  background: url(../../img/bg_dashboard.jpg) no-repeat center/cover;
+  background: url(../../img/bg_dashboard.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100%;
 }
 .navbar {
@@ -69,6 +71,11 @@ body {
 .prixProduit {
   width: 8em;
   margin-right: 10px;
+}
+/* img ticket caisse */
+.ticketCaisse {
+  width: 100%;
+  bl
 }
 @media screen and (max-width: 1024px) {
   .ficheProduit {
@@ -160,6 +167,7 @@ button {
   margin: auto auto;
   transform: translateY(60%);
   padding: 2rem;
+  border-radius: 10px;
 }
 .login h1 {
   text-align: center;
