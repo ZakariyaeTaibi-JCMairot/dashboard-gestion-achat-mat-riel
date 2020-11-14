@@ -64,11 +64,28 @@ if($_POST){
 	$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
 
 	$produitInsert->execute();	
-	if(execute()){
-		header('location:produit.php');
-	}
+	header('location:produit.php');
 	
 }
+// suppression d'un produit
+// cela siginifie que l'on declenche une suppression
+if(isset($_GET['action']) && $_GET['action']=='supprimer'){
+	// il y a bien un id a supprimer présent dans l'url
+	if(isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])){
+
+		$supprProduit = $pdo -> prepare("SELECT * FROM produitzak WHERE id_prod = :id");
+		$supprProduit -> bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+		$supprProduit -> execute();	
+		$produit=$supprProduit->fetch();
+
+		// cela signifie que le produit existe bien sur une ligne de la table
+		if($supprProduit-> rowCount() > 0){
+			$supprProduit = $pdo -> exec("DELETE FROM produitzak WHERE id_prod = $_GET[id]");
+			// Signifie que tout est ok, la requete à bien fonctionné	
+		}
+	}header('location:produit.php');
+}
+
 
 require_once('inc/header.php');
 require_once('inc/nav.php');
@@ -106,8 +123,8 @@ require_once('inc/nav.php');
 					<div class="adminProduit ">
 						<button class="btn btn-dark btn-block">Modifier</button>
 						<!-- suppression d'un produit -->
-						<button class="btn btn-dark btn-block">Supprimer
-							<a href="?action=supprimer&id=<?= $id_prod ?>" title="Supprimer le produit" onclick="return confirm('Etes-vous certain de vouloir supprimer ce produit ?')"> <i class="fas fa-trash-alt text-danger"></i> </a>
+						<button class="btn btn-dark btn-block">
+							<a href="?action=supprimer&id=<?= $id_prod ?>" title="Supprimer le produit" onclick="return confirm('Etes-vous certain de vouloir supprimer ce produit ?')">Supprimer</a>
 						</button>
 
 						<button class="btn btn-dark btn-block"><a href="<?=$manuel_prod?>">Documentation</a></button>
