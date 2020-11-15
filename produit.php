@@ -68,7 +68,7 @@ if($_POST){
 	
 }
 // suppression d'un produit
-// cela siginifie que l'on declenche une suppression
+// cela siginifie que l'on declenche une suppression bouton
 if(isset($_GET['action']) && $_GET['action']=='supprimer'){
 	// il y a bien un id a supprimer présent dans l'url
 	if(isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])){
@@ -85,6 +85,54 @@ if(isset($_GET['action']) && $_GET['action']=='supprimer'){
 		}
 	}header('location:produit.php');
 }
+// update d'un produit
+
+$modifProduit=$pdo->prepare('SELECT * FROM produitzak WHERE id_prod = :id');
+$modifProduit->bindValue(':id',$_GET['produit'],PDO::PARAM_INT);
+$execModifProduit = $modifProduit->execute();
+
+$produitModif=$modifProduit->fetch();
+// var_dump($produitModif);
+
+// $produitUpdate = $pdo->prepare(
+// 	'UPDATE produitzak set 
+// 	lieux_achat=:lieux_achat, 
+// 	nom_prod=:nom_prod, 
+// 	ref_prod=:ref_prod, 
+// 	date_achat=:date_achat, 
+// 	fin_garantie=:fin_garantie, 
+// 	prix_prod=:prix_prod, 
+// 	conseil_util=:conseil_util, 
+// 	cate_prod=:cate_prod, 
+// 	ticket_prod=:ticket_prod, 
+// 	manuel_prod=:manuel_prod
+// 	WHERE id_prod= :id 
+// 	LIMIT 1' 
+// 	);
+
+// $produitUpdate->bindValue(':id',$_POST['produitUpdate'],PDO::PARAM_INT);
+// $produitUpdate->bindValue(':lieux_achat', $_POST['lieux_achat'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':nom_prod', $_POST['nom_prod'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':ref_prod', $_POST['ref_prod'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':cate_prod', $_POST['cate_prod'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':conseil_util', $_POST['conseil_util'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':prix_prod', $_POST['prix_prod'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':date_achat', $_POST['date_achat'], PDO::PARAM_STR);
+// $produitUpdate->bindValue(':fin_garantie', $_POST['fin_garantie'], PDO::PARAM_STR);
+
+// // bind des de l'image et de la doc : file
+// $produitUpdate->bindValue(':ticket_prod', $file_img , PDO::PARAM_STR);
+// $produitUpdate->bindValue(':manuel_prod', $file_doc , PDO::PARAM_STR);
+
+// $executeUpdate= $produitUpdate->execute();
+// if($executeUpdate){
+// 	echo 'Le produit a été mis à jour';
+// }else{
+// 	echo 'Echec de la mise à jour';
+// }
+
+
+
 
 
 require_once('inc/header.php');
@@ -95,7 +143,8 @@ require_once('inc/nav.php');
 	<!-- tableau read la base de donné pour afficahge dans un tableau / bouton suppr/ 
 	bouton motifier qui renvoie à un formulaire prés rempli 
 	avec les données du produit à modifier-->
-	
+
+<!--affichage de tous les produit  -->
 	<div class="allProduit" id="allProduit">
 		<h2 class="h2Produit">PRODUITS</h2>
 		<!-- debut foreach read produitzak=>produit-->
@@ -121,17 +170,19 @@ require_once('inc/nav.php');
 					</div>
 					<div class="container-fluid"><img class="ticketCaisse" src="<?=$ticket_prod?>" alt="ticket de caisse"></div> 
 					<div class="adminProduit ">
-						<button class="btn btn-dark btn-block">Modifier</button>
+						<button class="btn btn-dark btn-block">
+							<a href="produit.php?produit=<?= $id_prod ?>">Modifier</a>
+						</button>
 						<!-- suppression d'un produit -->
 						<button class="btn btn-dark btn-block">
-							<a href="?action=supprimer&id=<?= $id_prod ?>" title="Supprimer le produit" onclick="return confirm('Etes-vous certain de vouloir supprimer ce produit ?')">Supprimer</a>
+							<a href="?action=supprimer&id=<?= $id_prod ?>" onclick="return confirm('Etes-vous certain de vouloir supprimer ce produit ?')">Supprimer</a>
 						</button>
 
 						<button class="btn btn-dark btn-block"><a href="<?=$manuel_prod?>">Documentation</a></button>
 					</div>
 				</div>
 				<hr>
-				<!-- footer de l fiche produit -->
+				<!-- footer de la fiche produit -->
 				<div class="footerProduit">
 					<div><?=$lieux_achat?></div>
 					<div>Date d'achat : <?=$date_achat?></div>
@@ -157,54 +208,57 @@ require_once('inc/nav.php');
 			<!-- nom du produit / reference du produit / categorie  -->
 			<div class="row">
 				<div class="col">
-				<input type="text" class="form-control" name="nameUpDate" placeholder="Nom du produit">
-				</div>
-				<div class="col">
-				<input type="text" class="form-control" name="refUpDate" placeholder="reference du produit">
-				</div>
-				<div class="col">
-				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-					<option selected>Categorie</option>
-					<option value="electroUpDate">Electroménager</option>
-					<option value="tvUpDate">TV-HIFI</option>
-					<option value="bricolageUpDate">Bricolage</option>
-					<option value="voitureUpDate">voiture</option>
+				<!-- input de type=hidden pour qu'il soit caché et qui reprend l'id du produit -->
+				<input type="hidden" name="produitUpdate" value="<?=$produitModif['id_prod']?>">
+					<input type="text" class="form-control" name="nom_prod" value="<?=$produitModif['nom_prod']?>" >
+					</div>
+					<div class="col">
+					<input type="text" class="form-control" name="ref_prod" value="<?=$produitModif['ref_prod']?>">
+					</div>
+					<div class="col">
+					<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="cate_prod">
+					<?php foreach($categories as $categorie): extract($categorie) ?> 
+      					<option value="<?=$categorie_value?>"><?=$categorie_type ?></option> 
+     				<?php endforeach ?> 
 				</select>
 				</div>
 			</div>
 			<!-- entretiens du produit -->
 			<div class="row">
 				<div class="col">
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="entretiensUpDate" rows="3" placeholder="conseils d'entretiens du produit"></textarea>
+					<textarea class="form-control" id="exampleFormControlTextarea1" name="conseil_util" rows="3" ><?=$produitModif['conseil_util']?></textarea>
 				</div>
 			</div>
 			<!-- adresse physique /  adresse electronique -->
 				<div class="row">
 					<div class="col">
-					<input type="text" class="form-control" name="adressePhyUpDate" placeholder="Adresse physique">
-					</div>
-					<div class="col">
-					<input type="text" class="form-control" name="adresseElecUpDate" placeholder="Adresse electronique">
+					<input type="text" class="form-control" name="lieux_achat" value="<?=$produitModif['lieux_achat']?>">
 					</div>
 				</div>
 				<!-- date d'achat / date fin de garantie / prix -->
 				<div class="row">
 					<div class="col">
 						<label for="dateAchat">Date d'achat du produit:</label>
-						<input type="date" id="dateAchat" name="dateAchatUpDate" min="1980-01-01" max="2025-12-31">
+						<input type="date" id="dateAchat" name="date_achat" min="1980-01-01" max="2025-12-31" value="<?=$produitModif['date_achat']?>">
 					</div>
 					<div class="col">
 						<label for="dateFinGar">Date d'achat du produit:</label>
-						<input type="date" id="dateFinGar" name="dateFinGarUpDate" min="1980-01-01" max="2025-12-31">
+						<input type="date" id="dateFinGar" name="fin_garantie" min="1980-01-01" max="2025-12-31" value="<?=$produitModif['fin_garantie']?>">
 					</div>
 					<div class="col">
 						<div class="form-group">
 							<label for="exampleFormControlFile1">Documentation</label>
-							<input type="file" class="form-control-file" name="docuUpDate" id="exampleFormControlFile1">
+							<input type="file" class="form-control-file" name="manuel_prod" id="exampleFormControlFile1" value="<?=$produitModif['manuel_prod']?>">
 						</div>	
 					</div>
 					<div class="col">
-						<input type="text" class="form-control" name="prixUpDate" placeholder="Prix">
+						<div class="form-group">
+							<label for="exampleFormControlFile1">Ticket</label>
+							<input type="file" class="form-control-file" name="ticket_prod" id="exampleFormControlFile1" value="ticket_prod">
+						</div>	
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" name="prix_prod" value="<?=$produitModif['prix_prod']?>">
 					</div>
 				</div>
 				<div class="row">
