@@ -2,9 +2,20 @@
 body {
   width: 85%;
   margin: 0 auto;
-  background: url(../../img/bg_dashboard.jpg) no-repeat center/cover;
+  background: url(../../img/bg_dashboard.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
 }
-/* titleDashboard */
+.navbar {
+  justify-content: flex-start;
+  box-shadow: 0 2px 3px #777;
+}
+.navbar a {
+  margin-right: 2rem;
+}
+
+/* page produit titleDashboard */
 .bgDashBoard {
   padding-top: 50px;
   background: #eee;
@@ -15,8 +26,10 @@ body {
   font-size: 3rem;
   color: #777777;
 }
-/* fiche produit */
-
+/* page produit fiche produit */
+.badge {
+  font-size: 1.2rem;
+}
 .h2Produit {
   color: #eee;
   text-align: center;
@@ -27,10 +40,9 @@ body {
   /* height: 2000px; */
   padding: 2rem 0;
 }
-
 .ficheProduit {
-  width: 80%;
-  margin: 0 auto;
+  width: 95%;
+  margin: 0 auto 2rem;
   border-radius: 15px;
   padding: 20px;
   border: 1px solid #777;
@@ -52,7 +64,6 @@ body {
 .adminProduit .btn {
   margin-top: 10px;
 }
-
 .footerProduit {
   display: flex;
   justify-content: space-between;
@@ -61,8 +72,43 @@ body {
   width: 8em;
   margin-right: 10px;
 }
-
-/* formulaire update/modification produit */
+/* img ticket caisse */
+.ticketCaisse {
+  width: 100%;
+  bl
+}
+@media screen and (max-width: 1024px) {
+  .ficheProduit {
+    width: 100%;
+  }
+  .headProduit {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .headProduit .badge {
+    margin-left: 2rem;
+  }
+  .headProduit h2 {
+    text-align: center;
+  }
+  .mainProduit {
+    display: block;
+  }
+  .adminProduit {
+    max-width: 50%;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .footerProduit {
+    display: block;
+  }
+  .navbar {
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* page produit formulaire update/modification produit */
 .upDateProduit {
   padding: 2rem 0;
 }
@@ -89,7 +135,7 @@ label,
 button {
   margin: 10px 10px;
 }
-/* formulaire ajout de produit formCreate */
+/* page produit formulaire ajout de produit formCreate */
 .createProduit {
   background: #423c3c;
   padding: 2rem 0;
@@ -114,7 +160,18 @@ label,
 button {
   margin: 10px 10px;
 }
-
+/* page index formulaire de connexion */
+.login {
+  width: 80%;
+  background: #eee;
+  margin: auto auto;
+  transform: translateY(60%);
+  padding: 2rem;
+  border-radius: 10px;
+}
+.login h1 {
+  text-align: center;
+}
 /* class de test */
 .test {
   border: 1px red solid;

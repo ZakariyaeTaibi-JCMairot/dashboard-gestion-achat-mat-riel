@@ -32,7 +32,7 @@ if($_POST){
 require_once('inc/header.php');
 ?>
 
-
+<div class="login">
 <h1>Connexion</h1>
 	<!----message d'erreur------>
 	<?= $error ?> 
@@ -40,7 +40,7 @@ require_once('inc/header.php');
 	<form method="post" action="" class="">
 	
 		<div class="form-group">
-			<label>email : </label>
+			<label>Email : </label>
 			<input type="text" name="email" class="form-control" />
 		</div>
 		
@@ -49,7 +49,8 @@ require_once('inc/header.php');
 			<input type="password" name="password" class="form-control" />
 		</div>
 	
-		<div class="form-group">
-			<input type="submit" class="btn btn-success" value="Connexion"/>
+		<div class=" form-group">
+			<input type="submit" class="btn btn-dark" value="Connexion"/>
 		</div>
 	</form>
+</div>
