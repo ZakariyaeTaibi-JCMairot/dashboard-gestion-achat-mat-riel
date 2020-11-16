@@ -127,7 +127,6 @@ require_once('inc/nav.php');
 						<button class="btn btn-dark btn-block">
 							<a href="?action=supprimer&id=<?= $id_prod ?>" onclick="return confirm('Etes-vous certain de vouloir supprimer ce produit ?')">Supprimer</a>
 						</button>
-
 						<button class="btn btn-dark btn-block"><a href="<?=$manuel_prod?>">Documentation</a></button>
 					</div>
 				</div>

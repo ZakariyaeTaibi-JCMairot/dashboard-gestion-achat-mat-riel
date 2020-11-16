@@ -4,8 +4,9 @@ require_once('inc/init.php');
 	
 // // Pour ajouter un produit (CREATE)
 
+// if(isset($_POST['lieux_achat']) && $_POST['lieux_achat']){
 
-if(isset($_POST['lieux_achat']) && $_POST['lieux_achat']){
+if($_POST){
 // codejc	
 	// importation du ticket de caisse
 	$file_name = $_FILES['ticket_prod']['name'];//atteindre le name 
@@ -23,35 +24,48 @@ if(isset($_POST['lieux_achat']) && $_POST['lieux_achat']){
     $type_autorisees2 = array('.pdf','.doc','.txt');//fichier que l'on controle
     copy($file_tmp_name2,$file_doc);//prend dans le dossier tempo pour le placer dans le dossier img
 
+	
+
+	// sql =INSERT INTO `produitzak`(`id_prod`, `lieux_achat`, `nom_prod`, `ref_prod`, `cate_prod`, `date_achat`, `fin_garantie`, `prix_prod`, `ticket_prod`, `manuel_prod`, `conseil_util`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
+	// variable pour l'insertion de nouveau produit
+	// attention remettre la categorie
 	$produitInsert = $pdo->prepare(
-		'INSERT INTO produitzak(ticket_prod, manuel_prod) 
-		VALUES (:ticket_prod,:manuel_prod)'
+		'INSERT INTO produitzak(lieux_achat, nom_prod, ref_prod, date_achat, fin_garantie, prix_prod, conseil_util, cate_prod, ticket_prod, manuel_prod) 
+		VALUES (:lieux_achat, :nom_prod, :ref_prod, :date_achat, :fin_garantie, :prix_prod, :conseil_util, :cate_prod, :ticket_prod,:manuel_prod)'
 		);
+// binParam str
+	$produitInsert->bindParam(':lieux_achat', $_POST['lieux_achat'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':nom_prod', $_POST['nom_prod'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':ref_prod', $_POST['ref_prod'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':cate_prod', $_POST['cate_prod'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':conseil_util', $_POST['conseil_util'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':prix_prod', $_POST['prix_prod'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':date_achat', $_POST['date_achat'], PDO::PARAM_STR);
+	$produitInsert->bindParam(':fin_garantie', $_POST['fin_garantie'], PDO::PARAM_STR);
 
 // bind des de l'image et de la doc : file
 	$produitInsert->bindParam(':ticket_prod', $file_img , PDO::PARAM_STR);
 	$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
 
 	$produitInsert->execute();	
+// code zak
+	// $sqlInsert='INSERT INTO produitzak (lieux_achat,nom_prod,ref_prod,cate_prod,date_achat,fin_garantie,prix_prod,conseil_util) VALUES(:lieux_achat,:nom_prod,:ref_prod,:cate_prod,:date_achat,:fin_garantie,:prix_prod,:conseil_util)';
+	// // préparation de la requête
 	
 
-
-// code zak
-	$sqlInsert='INSERT INTO produitzak (lieux_achat,nom_prod,ref_prod,cate_prod,date_achat,fin_garantie,prix_prod,conseil_util) VALUES(:lieux_achat,:nom_prod,:ref_prod,:cate_prod,:date_achat,:fin_garantie,:prix_prod,:conseil_util)';
-	// préparation de la requête
-	$req = $pdo->prepare($sqlInsert);
-	// execution de la requête 
-	$req->execute(array(
-		'lieux_achat'=>$_POST['lieux_achat'],
-		'nom_prod'=>$_POST['nom_prod'],
-		'ref_prod'=>$_POST['ref_prod'],
-		'cate_prod'=>$_POST['cate_prod'],
-		'date_achat'=>$_POST['date_achat'],
-		'fin_garantie'=>$_POST['fin_garantie'],
-		'prix_prod'=>$_POST['prix_prod'],
-		'conseil_util'=>$_POST['conseil_util'],
+	// $req = $pdo->prepare($sqlInsert);
+	// // execution de la requête 
+	// $req->execute(array(
+	// 	'lieux_achat'=>$_POST['lieux_achat'],
+	// 	'nom_prod'=>$_POST['nom_prod'],
+	// 	'ref_prod'=>$_POST['ref_prod'],
+	// 	'cate_prod'=>$_POST['cate_prod'],
+	// 	'date_achat'=>$_POST['date_achat'],
+	// 	'fin_garantie'=>$_POST['fin_garantie'],
+	// 	'prix_prod'=>$_POST['prix_prod'],
+	// 	'conseil_util'=>$_POST['conseil_util'],
 		
-	));
+	// ));
 	
 	// echo '<h4>Le produit a bien été ajouté<h4>';
 }

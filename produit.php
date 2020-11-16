@@ -13,7 +13,6 @@ $resultats=$query->fetchAll();
 require_once('inc/header.php');
 require_once('inc/nav.php');
 ?>
-
 <div class="bgDashBoard">
 	<h1 class="titleDashboard">DASHBOARD BACKOFFICE</h1>
 	<!-- tableau read la base de donné pour afficahge dans un tableau / bouton suppr/ 
@@ -37,15 +36,19 @@ require_once('inc/nav.php');
 				<hr>
 				<!-- corps de la fich produit -->
 				<div class="mainProduit">
-					<div>
+				<div class="col-8">
 						<p><?=$conseil_util?></p> 
 						
 					</div>
-					<div class="div-vide"><img src="" alt=""></div> 
+					<div class="container-fluid"><img class="ticketCaisse" src="<?=$ticket_prod?>" alt="ticket de caisse"></div> 
 					<div class="adminProduit ">
-						<a href="update.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Modifier</a>
-						<a href="delete.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Supprimer</a>
-						<a href="#" class="btn btn-dark btn-block">Documentation</a>
+						<button class="btn btn-dark btn-block">
+							<a href="update.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Modifier</a>
+						</button>
+						<button class="btn btn-dark btn-block">
+							<a href="delete.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Supprimer</a>
+						</button>
+						<button class="btn btn-dark btn-block"><a href="<?=$manuel_prod?>">Documentation</a></button>
 					</div>
 				</div>
 				<hr>
@@ -59,9 +62,5 @@ require_once('inc/nav.php');
 			</div>
 		<!-- fin foreach read produitzak=>produit-->
 		<?php endforeach ?>
-
 	</div>
-
-
-
 </div>
