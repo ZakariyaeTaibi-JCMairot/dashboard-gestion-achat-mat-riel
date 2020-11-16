@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 // accés à la base de donnée
 require_once('inc/init.php');
@@ -66,5 +65,3 @@ require_once('inc/nav.php');
 
 
 </div>
-=======
->>>>>>> 63a8db19b828196cd37c3ff2024d645e9c2dc5a2
