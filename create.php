@@ -6,7 +6,37 @@ require_once('inc/init.php');
 
 
 if(isset($_POST['lieux_achat']) && $_POST['lieux_achat']){
-		
+// codejc	
+	// importation du ticket de caisse
+	$file_name = $_FILES['ticket_prod']['name'];//atteindre le name 
+    $file_type = strrchr($file_name, ".");//pour check .png etc...
+    $file_tmp_name = $_FILES['ticket_prod']['tmp_name'];//fichier le chemin tempo
+    $file_img= "img/" . $file_name;//var 
+    $type_autorisees = array('.jpg','.gif','.png','.jpeg');//fichier que l'on controle
+    copy($file_tmp_name,$file_img);//prend dans le dossier tempo pour le placer dans le dossier img
+
+	// importation de la doc
+	$file_name2 = $_FILES['manuel_prod']['name'];//atteindre le name 
+    $file_type2 = strrchr($file_name2, ".");//pour check .png etc...
+    $file_tmp_name2 = $_FILES['manuel_prod']['tmp_name'];//fichier le chemin tempo
+    $file_doc= "doc/" . $file_name2;//var 
+    $type_autorisees2 = array('.pdf','.doc','.txt');//fichier que l'on controle
+    copy($file_tmp_name2,$file_doc);//prend dans le dossier tempo pour le placer dans le dossier img
+
+	$produitInsert = $pdo->prepare(
+		'INSERT INTO produitzak(ticket_prod, manuel_prod) 
+		VALUES (:ticket_prod,:manuel_prod)'
+		);
+
+// bind des de l'image et de la doc : file
+	$produitInsert->bindParam(':ticket_prod', $file_img , PDO::PARAM_STR);
+	$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
+
+	$produitInsert->execute();	
+	
+
+
+// code zak
 	$sqlInsert='INSERT INTO produitzak (lieux_achat,nom_prod,ref_prod,cate_prod,date_achat,fin_garantie,prix_prod,conseil_util) VALUES(:lieux_achat,:nom_prod,:ref_prod,:cate_prod,:date_achat,:fin_garantie,:prix_prod,:conseil_util)';
 	// préparation de la requête
 	$req = $pdo->prepare($sqlInsert);
@@ -20,8 +50,10 @@ if(isset($_POST['lieux_achat']) && $_POST['lieux_achat']){
 		'fin_garantie'=>$_POST['fin_garantie'],
 		'prix_prod'=>$_POST['prix_prod'],
 		'conseil_util'=>$_POST['conseil_util'],
+		
 	));
-	echo '<h4>Le produit a bien été ajouté<h4>';
+	
+	// echo '<h4>Le produit a bien été ajouté<h4>';
 }
 ?>
 
@@ -45,12 +77,13 @@ require_once('inc/nav.php');
 <input type="text" class="form-control" name="ref_prod" placeholder="reference du produit">
 </div>
 <div class="col">
-<select class="custom-select mr-sm-2" name="cate_prod" id="inlineFormCustomSelect">
+				<select class="custom-select mr-sm-2" name="cate_prod" id="inlineFormCustomSelect">
 					<option>Categorie</option>
 					<option>Electroménager</option>
 					<option>TV-HIFI</option>
 					<option>Bricolage</option>
 					<option>voiture</option>
+					<option>Avion</option>
 				</select>
 </div>
 </div>
