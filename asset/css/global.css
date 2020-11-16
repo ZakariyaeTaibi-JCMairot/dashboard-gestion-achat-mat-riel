@@ -64,6 +64,10 @@ body {
 .adminProduit .btn {
   margin-top: 10px;
 }
+.adminProduit .btn a{
+  color: #eee;
+  text-decoration: none;
+}
 .footerProduit {
   display: flex;
   justify-content: space-between;

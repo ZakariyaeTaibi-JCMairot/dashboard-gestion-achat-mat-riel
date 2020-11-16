@@ -43,12 +43,13 @@ require_once('inc/nav.php');
 					<div class="container-fluid"><img class="ticketCaisse" src="<?=$ticket_prod?>" alt="ticket de caisse"></div> 
 					<div class="adminProduit ">
 						<button class="btn btn-dark btn-block">
-							<a href="update.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Modifier</a>
+							<a href="update.php?id_prod=<?php echo $id_prod; ?>">Modifier</a>
 						</button>
 						<button class="btn btn-dark btn-block">
-							<a href="delete.php?id_prod=<?php echo $id_prod; ?>" class="btn btn-dark btn-block">Supprimer</a>
+							<a href="delete.php?id_prod=<?php echo $id_prod; ?>">Supprimer</a>
 						</button>
-						<button class="btn btn-dark btn-block"><a href="<?=$manuel_prod?>">Documentation</a></button>
+						<button class="btn btn-dark btn-block">
+							<a href="<?=$manuel_prod?>">Documentation</a></button>
 					</div>
 				</div>
 				<hr>
