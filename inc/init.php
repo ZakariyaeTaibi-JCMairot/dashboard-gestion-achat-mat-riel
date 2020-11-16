@@ -1,6 +1,6 @@
 <?php
 // ouverture de la session
-session_start();
+// session_start();
 
 // lien vers la base de données
 $pdo= new PDO('mysql:host=localhost;dbname=crudzak','root','',array(

@@ -1,4 +1,6 @@
 <?php
+
+// connexion à la bdd
 require_once('inc/init.php');
 
 if($_POST){
