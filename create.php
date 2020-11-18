@@ -17,22 +17,33 @@ if($_POST){
     copy($file_tmp_name,$file_img);//prend dans le dossier tempo pour le placer dans le dossier img
 
 	// importation de la doc
+	if(isset($_POST['manuel_prod'])){
 	$file_name2 = $_FILES['manuel_prod']['name'];//atteindre le name 
     $file_type2 = strrchr($file_name2, ".");//pour check .png etc...
     $file_tmp_name2 = $_FILES['manuel_prod']['tmp_name'];//fichier le chemin tempo
     $file_doc= "doc/" . $file_name2;//var 
     $type_autorisees2 = array('.pdf','.doc','.txt');//fichier que l'on controle
     copy($file_tmp_name2,$file_doc);//prend dans le dossier tempo pour le placer dans le dossier img
-
+	}
 	
 
 	// sql =INSERT INTO `produitzak`(`id_prod`, `lieux_achat`, `nom_prod`, `ref_prod`, `cate_prod`, `date_achat`, `fin_garantie`, `prix_prod`, `ticket_prod`, `manuel_prod`, `conseil_util`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
 	// variable pour l'insertion de nouveau produit
 	// attention remettre la categorie
+	if(isset($_POST['manuel_prod'])){
 	$produitInsert = $pdo->prepare(
 		'INSERT INTO produitzak(lieux_achat, nom_prod, ref_prod, date_achat, fin_garantie, prix_prod, conseil_util, cate_prod, ticket_prod, manuel_prod) 
 		VALUES (:lieux_achat, :nom_prod, :ref_prod, :date_achat, :fin_garantie, :prix_prod, :conseil_util, :cate_prod, :ticket_prod,:manuel_prod)'
 		);
+		$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
+	}else{
+		$produitInsert = $pdo->prepare(
+			'INSERT INTO produitzak(lieux_achat, nom_prod, ref_prod, date_achat, fin_garantie, prix_prod, conseil_util, cate_prod, ticket_prod) 
+			VALUES (:lieux_achat, :nom_prod, :ref_prod, :date_achat, :fin_garantie, :prix_prod, :conseil_util, :cate_prod, :ticket_prod)'
+			);
+	}	
+
+
 // binParam str
 	$produitInsert->bindParam(':lieux_achat', $_POST['lieux_achat'], PDO::PARAM_STR);
 	$produitInsert->bindParam(':nom_prod', $_POST['nom_prod'], PDO::PARAM_STR);
@@ -45,9 +56,10 @@ if($_POST){
 
 // bind des de l'image et de la doc : file
 	$produitInsert->bindParam(':ticket_prod', $file_img , PDO::PARAM_STR);
-	$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
+	
 
-	$produitInsert->execute();	
+	$produitInsert->execute();
+		
 // code zak
 	// $sqlInsert='INSERT INTO produitzak (lieux_achat,nom_prod,ref_prod,cate_prod,date_achat,fin_garantie,prix_prod,conseil_util) VALUES(:lieux_achat,:nom_prod,:ref_prod,:cate_prod,:date_achat,:fin_garantie,:prix_prod,:conseil_util)';
 	// // préparation de la requête

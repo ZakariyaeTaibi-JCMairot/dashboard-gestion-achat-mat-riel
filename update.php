@@ -34,21 +34,25 @@ if($_POST){
 		copy($file_tmp_name,$file_img);//prend dans le dossier tempo pour le placer dans le dossier img
 	
 		// importation de la doc
+		if(isset($_POST['manuel_prod'])){
 		$file_name2 = $_FILES['manuel_prod']['name'];//atteindre le name 
 		$file_type2 = strrchr($file_name2, ".");//pour check .png etc...
 		$file_tmp_name2 = $_FILES['manuel_prod']['tmp_name'];//fichier le chemin tempo
 		$file_doc= "doc/" . $file_name2;//var 
 		$type_autorisees2 = array('.pdf','.doc','.txt');//fichier que l'on controle
 		copy($file_tmp_name2,$file_doc);//prend dans le dossier tempo pour le placer dans le dossier img
-	
+		}
 		
 	
 		// sql =INSERT INTO `produitzak`(`id_prod`, `lieux_achat`, `nom_prod`, `ref_prod`, `cate_prod`, `date_achat`, `fin_garantie`, `prix_prod`, `ticket_prod`, `manuel_prod`, `conseil_util`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
 		// variable pour l'insertion de nouveau produit
 		// attention remettre la categorie
-		
+		if(isset($_POST['manuel_prod'])){
 		$produitInsert = $pdo->prepare('UPDATE produitzak SET lieux_achat = :lieux_achat, nom_prod = :nom_prod, ref_prod = :ref_prod, cate_prod = :cate_prod, date_achat = :date_achat, fin_garantie = :fin_garantie, prix_prod = :prix_prod, conseil_util = :conseil_util, manuel_prod=:manuel_prod, ticket_prod=:ticket_prod WHERE  id_prod=:id_prod');
-
+		$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
+		}else{
+		$produitInsert = $pdo->prepare('UPDATE produitzak SET lieux_achat = :lieux_achat, nom_prod = :nom_prod, ref_prod = :ref_prod, cate_prod = :cate_prod, date_achat = :date_achat, fin_garantie = :fin_garantie, prix_prod = :prix_prod, conseil_util = :conseil_util, ticket_prod=:ticket_prod WHERE  id_prod=:id_prod');
+		}
 	// binParam str
 		$produitInsert->bindParam(':lieux_achat', $_POST['lieux_achat'], PDO::PARAM_STR);
 		$produitInsert->bindParam(':nom_prod', $_POST['nom_prod'], PDO::PARAM_STR);
@@ -61,32 +65,31 @@ if($_POST){
 		$produitInsert->bindParam(':id_prod', $_POST['id_prod'], PDO::PARAM_STR);
 	// bind des de l'image et de la doc : file
 		$produitInsert->bindParam(':ticket_prod', $file_img , PDO::PARAM_STR);
-		$produitInsert->bindParam(':manuel_prod', $file_doc , PDO::PARAM_STR);
-		$produitInsert->execute();	
+		$produitInsert->execute();
+		header('location:produit.php');	
 }
 
 
 
 // code zak
 // Modifier un produit (UPDATE)
-// if(isset($_POST['id_prod']) && $_POST['id_prod']){
-// if(isset($_POST['id_prod'])){
-// 	$req = $pdo->prepare('UPDATE produitzak SET lieux_achat = :lieux_achat, nom_prod = :nom_prod, ref_prod = :ref_prod, cate_prod = :cate_prod, date_achat = :date_achat, fin_garantie = :fin_garantie, prix_prod = :prix_prod, manuel_prod = :manuel_prod, conseil_util = :conseil_util  where id_prod=:id_prod');
-// 	$req->execute(array(
-//         'id_prod'=> $_POST['id_prod'],
-// 		'lieux_achat' => $_POST['lieux_achat'],
-// 		'nom_prod' => $_POST['nom_prod'],
-// 		'ref_prod' => $_POST['ref_prod'],
-// 		'cate_prod' => $_POST['cate_prod'],
-// 		'date_achat' => $_POST['date_achat'],
-// 		'fin_garantie' => $_POST['fin_garantie'],
-// 		'prix_prod' => $_POST['prix_prod'],
-// 		'manuel_prod' => $_POST['manuel_prod'],
-// 		'conseil_util' => $_POST['conseil_util']
-//         ));
-//         header('Location: produit.php');
-// }
-
+if(isset($_POST['id_prod']) && $_POST['id_prod']){
+if(isset($_POST['id_prod'])){
+	$req = $pdo->prepare('UPDATE produitzak SET lieux_achat = :lieux_achat, nom_prod = :nom_prod, ref_prod = :ref_prod, cate_prod = :cate_prod, date_achat = :date_achat, fin_garantie = :fin_garantie, prix_prod = :prix_prod, manuel_prod = :manuel_prod, conseil_util = :conseil_util  where id_prod=:id_prod');
+	$req->execute(array(
+        'id_prod'=> $_POST['id_prod'],
+		'lieux_achat' => $_POST['lieux_achat'],
+		'nom_prod' => $_POST['nom_prod'],
+		'ref_prod' => $_POST['ref_prod'],
+		'cate_prod' => $_POST['cate_prod'],
+		'date_achat' => $_POST['date_achat'],
+		'fin_garantie' => $_POST['fin_garantie'],
+		'prix_prod' => $_POST['prix_prod'],
+		'manuel_prod' => $_POST['manuel_prod'],
+		'conseil_util' => $_POST['conseil_util']
+        ));
+        header('Location: produit.php');
+}
 ?>
 
 <!-- update produit -->
